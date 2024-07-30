@@ -1,3 +1,11 @@
-*/target
-*.xml
-*/test
+# ignore everything
+*
+
+# but don't ignore files ending with slash = directories
+!*/
+**/target
+**/test
+
+# and don't ignore files ending with ".java"
+!*.java
+!*.gitignore
