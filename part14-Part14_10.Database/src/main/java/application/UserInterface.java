@@ -25,11 +25,32 @@ public class UserInterface {
 
             System.out.print("> ");
             String command = this.scanner.nextLine();
-            if (command.equals("x")) {
+            if (command.equals("quit") || command.equals("x")) {
                 break;
             }
-
-            // implement the functionality here
+            
+            if (command.equals("list") || command.equals("1")) {
+                System.out.println("Listing the database contents");
+                database.list().forEach(todo -> System.out.println(todo.toString()));
+            }
+            if (command.equals("add") || command.equals("2")) {
+                System.out.println("Adding a new todo");
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter description: ");
+                String description = scanner.nextLine();
+                Todo newTodo = new Todo(name, description, false);
+                database.add(newTodo);
+            }
+            if (command.equals("mark as done") || command.equals("3")) {
+                System.out.print("Which todo should be marked as done (give the id)?: ");
+                database.markAsDone(Integer.valueOf(scanner.nextLine()));
+            }
+            if (command.equals("remove") || command.equals("4")) {
+                System.out.print("Which todo should be removed (give the id)?: ");
+                database.remove(Integer.valueOf(scanner.nextLine()));
+            }
+            
         }
 
         System.out.println("Thank you!");
